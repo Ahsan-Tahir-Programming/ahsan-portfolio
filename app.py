@@ -9,13 +9,18 @@ app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'  # Change this to a random secret key
 
 # Configuration
-UPLOAD_FOLDER = 'static/uploads'
+# UPLOAD_FOLDER = 'static/uploads'
+
+UPLOAD_FOLDER = '/tmp/uploads'  # for Vercel /tmp use and try .
+
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'doc', 'docx'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Ensure upload directory exists
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-
+# Ensure upload directory exists - FIX FOR VERCEL
+try:
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+except OSError:
+    pass  # Vercel serverless doesn't allow folder creation
 # Portfolio data
 portfolio_data = {
     'personal_info': {
