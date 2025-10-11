@@ -1,9 +1,12 @@
 # app.py - Main Flask Application
-from flask import Flask, render_template, request, jsonify, flash, redirect, url_for
+from flask import Flask, render_template, request, jsonify, flash, redirect, send_file, url_for
 from datetime import datetime
 import json
 import os
 from werkzeug.utils import secure_filename
+
+# Global variable for storing contacts in memory
+contacts_storage = []
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'  # Change this to a random secret key
@@ -134,16 +137,23 @@ def contact():
         }
 
         # Save to JSON file (in production, use proper database)
-        contacts_file = 'contacts.json'
-        contacts = []
-        if os.path.exists(contacts_file):
-            with open(contacts_file, 'r') as f:
-                contacts = json.load(f)
+        # contacts_file = 'contacts.json'
+        # contacts = []
+        # if os.path.exists(contacts_file):
+        #     with open(contacts_file, 'r') as f:
+        #         contacts = json.load(f)
 
-        contacts.append(contact_data)
+        # Store in memory instead of file
+        contacts_storage.append(contact_data)
 
-        with open(contacts_file, 'w') as f:
-            json.dump(contacts, f, indent=2)
+        # Optional: Print to logs so you can see messages
+        print(f"New contact from: {data['name']} ({data['email']})")
+        print(f"Subject: {data['subject']}")
+        print(f"Message: {data['message']}")
+        
+
+        # with open(contacts_file, 'w') as f:
+        #     json.dump(contacts, f, indent=2)
 
         return jsonify({
             'success': True,
@@ -151,7 +161,8 @@ def contact():
         })
 
     except Exception as e:
-        return jsonify({'success': False, 'error': str(e)}), 500
+        print(f"Error: {str(e)}")
+        return jsonify({'success': False, 'error': 'Something went wrong'}), 500
 
 @app.route('/resume')
 def resume():
@@ -179,13 +190,14 @@ def api_projects():
 @app.route('/admin')
 def admin():
     """Simple admin panel to view contacts"""
-    if not os.path.exists('contacts.json'):
-        contacts = []
-    else:
-        with open('contacts.json', 'r') as f:
-            contacts = json.load(f)
+    # if not os.path.exists('contacts.json'):
+    #     contacts = []
+    # else:
+    #     with open('contacts.json', 'r') as f:
+    #         contacts = json.load(f)
 
-    return render_template('admin.html', contacts=contacts)
+    # Use in-memory storage instead of file
+    return render_template('admin.html', contacts=contacts_storage)
 
 
 @app.route('/upload', methods=['GET', 'POST'])
