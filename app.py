@@ -5,9 +5,6 @@ import json
 import os
 from werkzeug.utils import secure_filename
 
-# Global variable for storing contacts in memory
-contacts_storage = []
-
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'  # Change this to a random secret key
 
@@ -127,14 +124,14 @@ def contact():
             if not data.get(field):
                 return jsonify({'success': False, 'error': f'{field.title()} is required'}), 400
 
-        # Save contact data (in a real app, you might send email or save to database)
-        contact_data = {
-            'timestamp': datetime.now().isoformat(),
-            'name': data['name'],
-            'email': data['email'],
-            'subject': data['subject'],
-            'message': data['message']
-        }
+        # # Save contact data (in a real app, you might send email or save to database)
+        # contact_data = {
+        #     'timestamp': datetime.now().isoformat(),
+        #     'name': data['name'],
+        #     'email': data['email'],
+        #     'subject': data['subject'],
+        #     'message': data['message']
+        # }
 
         # Save to JSON file (in production, use proper database)
         # contacts_file = 'contacts.json'
@@ -143,13 +140,16 @@ def contact():
         #     with open(contacts_file, 'r') as f:
         #         contacts = json.load(f)
 
+        # contacts.append(contact_data)
+
+        # this is also fail not good for vercel  
         # Store in memory instead of file
-        contacts_storage.append(contact_data)
+        # contacts_storage.append(contact_data)
 
         # Optional: Print to logs so you can see messages
-        print(f"New contact from: {data['name']} ({data['email']})")
-        print(f"Subject: {data['subject']}")
-        print(f"Message: {data['message']}")
+        # print(f"New contact from: {data['name']} ({data['email']})")
+        # print(f"Subject: {data['subject']}")
+        # print(f"Message: {data['message']}")
         
 
         # with open(contacts_file, 'w') as f:
@@ -161,7 +161,6 @@ def contact():
         })
 
     except Exception as e:
-        print(f"Error: {str(e)}")
         return jsonify({'success': False, 'error': 'Something went wrong'}), 500
 
 @app.route('/resume')
@@ -190,14 +189,17 @@ def api_projects():
 @app.route('/admin')
 def admin():
     """Simple admin panel to view contacts"""
+    # this is also fail not good for vercel
+    # Use in-memory storage instead of file
+    # return render_template('admin.html', contacts=contacts_storage)
+
     # if not os.path.exists('contacts.json'):
     #     contacts = []
     # else:
     #     with open('contacts.json', 'r') as f:
     #         contacts = json.load(f)
 
-    # Use in-memory storage instead of file
-    return render_template('admin.html', contacts=contacts_storage)
+    # return render_template('admin.html', contacts=contacts)
 
 
 @app.route('/upload', methods=['GET', 'POST'])
