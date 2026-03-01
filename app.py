@@ -31,26 +31,24 @@ portfolio_data = {
         'linkedin': 'https://linkedin.com/in/ahsan-tahir-880b5324a',
         'github': 'https://github.com/Ahsan-Tahir-Programming',
         'location': 'Lahore, Punjab, Pakistan',
-        'about': 'Python Developer at Concave Tech with expertise in machine learning and deep learning solutions. Specialized in YOLO object detection, web APIs, and desktop applications. Passionate about building intelligent automation systems that solve real-world problems.'
+        'about': 'AI Engineer specializing in Computer Vision and MLOps. Proven track record of deploying YOLO models to production using FastAPI and Docker. Experienced in building complex compliance logic for the Retail Tech industry. Passionate about building intelligent automation systems that solve real-world problems.'
     },
     'skills': {
-        'Programming': ['Python', 'Java', 'Javascript', 'HTML', 'XML', 'CSS'],
-        'Machine Learning': ['PyTorch', 'TensorFlow Lite', 'NumPy', 'Pandas', 'Matplotlib', 'Natural Language Processing (NLP)', 'Scikit-Learn'],
-        # 'Computer Vision': ['YOLO' 'Ultralytics'],
-        'Web Development': ['Flask', 'FastAPI'],
-        'Desktop Development': ['PyQt5'],
-        'Tools & Technologies': ['Docker', 'SQLite', 'Colab', 'Wasabi']
+        'Languages': ['Python', 'Java', 'JavaScript', 'C++'],
+        'ML & Computer Vision': ['PyTorch', 'YOLO', 'TensorFlow Lite', 'OpenCV', 'NLP', 'Scikit-learn', 'Pandas', 'Geopy'],
+        'Frontend': ['HTML5', 'CSS3', 'Gradio'],
+        'Backend & Web': ['FastAPI', 'Flask'],
+        'Databases': ['MySQL', 'SQLite', 'Firebase'],
+        'Cloud & DevOps': ['AWS', 'Docker', 'Git', 'Wasabi', 'S3-compatible Storage'],
+        'Desktop': ['PyQt']
     },
     'experience': [
         {
-            'title': 'Python Developer',
+            'title': 'Python/AI Engineer',
             'company': 'Concave Tech',
             'duration': 'May 2024 – Present',
-            # previous
-            # 'description': 'Gained hands-on experience developing Python applications with focus on machine learning and deep learning solutions. Working with cutting-edge technologies including YOLO object detection, web APIs, and desktop applications.',
-            # 'description': 'Developing production-ready Python applications using YOLO for object detection, building REST APIs with FastAPI, and creating desktop applications with PyQt5. Working with Docker containerization and database integration.',
-            'description': 'Developing production-ready Python applications using machine learning and deep learning. Key responsibilities include: building YOLO-based object detection systems, creating REST APIs with FastAPI, implementing Docker containerization for deployments, and developing desktop applications with PyQt5. Working with modern DevOps practices including Docker image management and container orchestration.',
-            'technologies': ['Python', 'Machine Learning', 'Deep Learning', 'YOLO', 'FastAPI', 'Docker', 'PyQt5'],
+            'description': 'Leading development of AI-powered solutions for Retail Tech. Key achievements: engineered a computer vision pipeline using YOLO & Geometric Algorithms for shelf compliance automation; built and deployed production-grade FastAPI backend for real-time object detection with Docker containerization; developed a full-stack AI-powered clustering and route optimization system with constrained K-means, MySQL, and Numba JIT. Streamlined large-scale dataset management using AWS CLI with S3-compatible storage (Wasabi).',
+            'technologies': ['Python', 'YOLO', 'FastAPI', 'Docker', 'Computer Vision', 'MLOps', 'MySQL', 'AWS', 'Gradio', 'Geopy'],
         },
     ],
     'projects': [
@@ -65,23 +63,37 @@ portfolio_data = {
             'icon': 'fas fa-camera',
             'status': 'Live',
         },
+        # {
+        #     'title': 'Sentiment Analysis for Recipe Rating',
+        #     'description': 'Developed a sentiment analysis model for interpreting user feedback in a recipe rating application. Successfully integrated with Flutter mobile app for enhanced user experience.',
+        #     # 'technologies': ['Python', 'Machine Learning', 'Roberta', 'Flutter Integration'],
+        #     'technologies': ['Roberta', 'NLP', 'Flutter Integration'],
+        #     # 'icon': 'fas fa-heart', # Generic heart                    # Better: 'fas fa-brain' or 'fas fa-chart-line'
+        #     'icon': 'fas fa-smile',  # Sentiment analysis icon
+        #     # 'icon': 'fas fa-brain', # Brain icon for ML/AI
+        #     # 'icon': 'fas fa-chart-line',
+        #     'status': 'Completed'
+        # },
+        # {
+        #     'title': 'Desktop Task Management App',
+        #     'description': 'Built a comprehensive desktop application featuring Add, Edit, Delete, Undo, Search, Sort operations with Dark/Light mode support. Implements local JSON persistence for data storage.',
+        #     'technologies': ['PyQt5', 'JSON', 'Desktop GUI'],
+        #     # 'icon': 'fas fa-tasks',  # Task management icon
+        #     'icon': 'fas fa-desktop',  # # Desktop icon better than tasks
+        #     'status': 'Completed'
+        # },
         {
-            'title': 'Sentiment Analysis for Recipe Rating',
-            'description': 'Developed a sentiment analysis model for interpreting user feedback in a recipe rating application. Successfully integrated with Flutter mobile app for enhanced user experience.',
-            # 'technologies': ['Python', 'Machine Learning', 'Roberta', 'Flutter Integration'],
-            'technologies': ['Roberta', 'NLP', 'Flutter Integration'],
-            # 'icon': 'fas fa-heart', # Generic heart                    # Better: 'fas fa-brain' or 'fas fa-chart-line'
-            'icon': 'fas fa-smile',  # Sentiment analysis icon
-            # 'icon': 'fas fa-brain', # Brain icon for ML/AI
-            # 'icon': 'fas fa-chart-line',
+            'title': 'Retail Planogram Compliance System',
+            'description': 'Engineered a computer vision pipeline using YOLO & Geometric Algorithms to automate shelf compliance checks (Horizontal/Vertical matching). Improved complex logic for Brand Blocking detection and Eye-Level (Golden Zone) analysis, directly impacting retail audit efficiency. Architected an interactive audit dashboard using Gradio for visualizing gaps and misplacements.',
+            'technologies': ['YOLO', 'Gradio', 'Computer Vision', 'OpenCV'],
+            'icon': 'fas fa-store',
             'status': 'Completed'
         },
         {
-            'title': 'Desktop Task Management App',
-            'description': 'Built a comprehensive desktop application featuring Add, Edit, Delete, Undo, Search, Sort operations with Dark/Light mode support. Implements local JSON persistence for data storage.',
-            'technologies': ['PyQt5', 'JSON', 'Desktop GUI'],
-            # 'icon': 'fas fa-tasks',  # Task management icon
-            'icon': 'fas fa-desktop',  # # Desktop icon better than tasks
+            'title': 'AI-Powered Clustering & Route Optimization System',
+            'description': 'Full-stack web application that intelligently clusters geographic locations and optimizes daily shop visit schedules. Uses constrained K-means clustering to group shops by location (respecting visit limits and distance constraints), distributes visits across days with workload balancing, and optimizes travel routes using heap-based path finding. Includes user authentication with MySQL, Excel import/export for bulk data, interactive dashboard with real-time visualization, REST API with CORS, and Numba JIT for performance-optimized processing.',
+            'technologies': ['K-means Clustering', 'MySQL', 'Numba JIT', 'Geopy'],
+            'icon': 'fas fa-route',
             'status': 'Completed'
         }
     ],
@@ -165,8 +177,10 @@ def contact():
 
 @app.route('/resume')
 def resume():
-    # Resume file serve karo
-    return send_file('static/resume.pdf')
+    resume_path = os.path.join(app.static_folder, 'uploads', 'resume.pdf')
+    if not os.path.exists(resume_path):
+        resume_path = os.path.join(app.static_folder, 'resume.pdf')
+    return send_file(resume_path, as_attachment=False, download_name='Ahsan_Tahir_Resume.pdf')
 
 @app.route('/api/portfolio')
 def api_portfolio():

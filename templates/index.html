@@ -1,59 +1,69 @@
-{% extends "base.html" %}
-
-{% block body %}
+{% extends "base.html" %} {% block body %}
 <div class="floating-shapes">
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
+  <div class="shape"></div>
+  <div class="shape"></div>
+  <div class="shape"></div>
 </div>
 
 <div class="container">
-    <!-- Header Section -->
-    <div class="card header">
-            <!-- Left side branding -->
+  <!-- Header Section -->
+  <div class="card header" id="home">
+    <!-- Left side branding -->
     <div class="brand-logo">
-        <!-- <span class="brand-text">AT</span> -->
-        <span class="brand-text">Ahsan.Dev</span>
+      <!-- <span class="brand-text">AT</span> -->
+      <span class="brand-text">Ahsan.Dev</span>
     </div>
 
-     
     <!-- Desktop Navigation (existing) -->
     <nav class="main-nav desktop-nav">
-        <a href="#home">Home</a>
-        <a href="#about">About Me</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-        <a href="{{ url_for('static', filename='resume.pdf') }}" class="resume-btn" target="_blank">Resume</a>
+      <a href="#home">Home</a>
+      <a href="#about">About Me</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a
+        href="{{ url_for('static', filename='resume.pdf') }}"
+        class="resume-btn"
+        target="_blank"
+        >Resume</a
+      >
     </nav>
 
-     <!-- Mobile Hamburger Menu -->
+    <!-- Mobile Hamburger Menu -->
     <div class="mobile-nav">
-        <div class="hamburger" onclick="toggleMobileMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="#home" onclick="closeMobileMenu()">Home</a>
-            <a href="#about" onclick="closeMobileMenu()">About Me</a>
-            <a href="#experience" onclick="closeMobileMenu()">Experience</a>
-            <a href="#projects" onclick="closeMobileMenu()">Projects</a>
-            <a href="#contact" onclick="closeMobileMenu()">Contact</a>
-            <a href="{{ url_for('static', filename='resume.pdf') }}" class="resume-btn" target="_blank">Resume</a>
-        </div>
+      <div class="hamburger" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" onclick="closeMobileMenu()">Home</a>
+        <a href="#about" onclick="closeMobileMenu()">About Me</a>
+        <a href="#experience" onclick="closeMobileMenu()">Experience</a>
+        <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+        <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+        <a
+          href="{{ url_for('static', filename='resume.pdf') }}"
+          class="resume-btn"
+          target="_blank"
+          >Resume</a
+        >
+      </div>
     </div>
 
-        <div class="profile-img">
-    <!-- With actual photo: -->
-    <img src="{{ url_for('static', filename='img/profile.jpg') }}" 
-         alt="Ahsan Tahir" 
-         style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">        </div>
-        <h1 class="name">{{ data.personal_info.name }}</h1>
-        <p class="title">{{ data.personal_info.title }}</p>
+    <div class="profile-img">
+      <!-- With actual photo: -->
+      <img
+        src="{{ url_for('static', filename='img/profile.jpg') }}"
+        alt="Ahsan Tahir"
+        style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover"
+      />
+    </div>
+    <h1 class="name">{{ data.personal_info.name }}</h1>
+    <p class="title">{{ data.personal_info.title }}</p>
 
-        <!-- Remove contact-info div completely -->
-        <!-- <div class="contact-info">
+    <!-- Remove contact-info div completely -->
+    <!-- <div class="contact-info">
             <a href="mailto:{{ data.personal_info.email }}" class="contact-item">
                 <i class="fas fa-envelope"></i>
                 <span>{{ data.personal_info.email }}</span>
@@ -71,86 +81,105 @@
                 <span>GitHub</span>
             </a>
         </div> -->
-    </div> 
+  </div>
 
-    <!-- About Section -->
-<div class="card" id="about">
-        <h2 class="section-title">About Me</h2>
-        <p style="text-align: center; color: #666; font-size: 1.1em; line-height: 1.7;">
-            {{ data.personal_info.about }}
-        </p>
+  <!-- About Section -->
+  <div class="card card-section" id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-content">
+      <p class="about-text">{{ data.personal_info.about }}</p>
+      <!-- The highlights div was here; now it's gone! -->
     </div>
+  </div>
 
-    <!-- Skills Section -->
-    <div class="card" id="skill">
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="skills-grid">
-            {% for category, skills in data.skills.items() %}
-            <div class="skill-category">
-                <h4><i class="fas fa-code"></i> {{ category }}</h4>
-                {% for skill in skills %}
-                <div class="skill-tag">{{ skill }}</div>
-                {% endfor %}
-            </div>
-            {% endfor %}
+  <!-- Skills Section -->
+  <div class="card card-section" id="skill">
+    <h2 class="section-title">Technical Skills</h2>
+    <p class="section-subtitle">
+      Technologies and tools I work with to build intelligent solutions
+    </p>
+    <div class="skills-grid">
+      {% for category, skills in data.skills.items() %}
+      <div class="skill-category fade-in">
+        <h4><i class="fas fa-layer-group"></i> {{ category }}</h4>
+        <div class="skill-tags">
+          {% for skill in skills %}
+          <span class="skill-tag">{{ skill }}</span>
+          {% endfor %}
         </div>
+      </div>
+      {% endfor %}
     </div>
+  </div>
 
-    <!-- Experience Section -->
-    <div class="card" id="experience">
-        <h2 class="section-title">Professional Experience</h2>
-        {% for exp in data.experience %}
-        <div class="experience">
-            <h3>{{ exp.title }}</h3>
-            <div class="company">{{ exp.company }}</div>
-            <div class="duration">{{ exp.duration }}</div>
-            <p>{{ exp.description }}</p>
-
-            <!-- Add this section to display technologies -->
-            {% if exp.technologies %}
-            <div class="experience-tech" style="margin-top: 15px;">
-                {% for tech in exp.technologies %}
-                <span class="tech-tag">{{ tech }}</span>
-                {% endfor %}           
-            </div>
-            {% endif %}
-        </div>
+  <!-- Experience Section -->
+  <div class="card card-section" id="experience">
+    <h2 class="section-title">Professional Experience</h2>
+    <p class="section-subtitle">
+      Where I've applied my expertise to deliver impactful solutions
+    </p>
+    {% for exp in data.experience %}
+    <div class="experience fade-in">
+      <div class="experience-header">
+        <h3>{{ exp.title }}</h3>
+        <span class="duration-badge">{{ exp.duration }}</span>
+      </div>
+      <div class="company">{{ exp.company }}</div>
+      <p class="experience-desc">{{ exp.description }}</p>
+      {% if exp.technologies %}
+      <div class="experience-tech">
+        {% for tech in exp.technologies %}
+        <span class="tech-tag">{{ tech }}</span>
         {% endfor %}
-
-    <!-- Projects Section -->
-    <div class="card" id="projects">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
-            {% for project in data.projects %}
-            <div class="project-card">
-                <div class="project-title">
-                    <i class="{{ project.icon }}"></i> {{ project.title }}
-                </div>
-                <div class="project-description">
-                    {{ project.description }}
-                </div>
-                <div class="project-tech">
-                    {% for tech in project.technologies %}
-                    <div class="tech-tag">{{ tech }}</div>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
+      </div>
+      {% endif %}
     </div>
+    {% endfor %}
+  </div>
 
-    <!-- Education & Certifications -->
-    <!-- <div class="card" id="education"> -->
-        <!-- <h2 class="section-title">Education & Certifications</h2> -->
-        <!-- <h2 class="section-title">Education</h2> -->
+  <!-- Projects Section -->
+  <div class="card card-section" id="projects">
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-subtitle">
+      AI & ML solutions built for production environments
+    </p>
+    <div class="projects-grid">
+      {% for project in data.projects %}
+      <div class="project-card fade-in">
+        <div class="project-header">
+          <div class="project-title">
+            <i class="{{ project.icon }}"></i> {{ project.title }}
+          </div>
+          {% if project.status %}
+          <span
+            class="project-status project-status--{{ project.status|lower }}"
+            >{{ project.status }}</span
+          >
+          {% endif %}
+        </div>
+        <div class="project-description">{{ project.description }}</div>
+        <div class="project-tech">
+          {% for tech in project.technologies %}
+          <span class="tech-tag">{{ tech }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 
-        <!-- <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
+  <!-- Education & Certifications -->
+  <!-- <div class="card" id="education"> -->
+  <!-- <h2 class="section-title">Education & Certifications</h2> -->
+  <!-- <h2 class="section-title">Education</h2> -->
+
+  <!-- <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
             <div class="experience">
                 <h3><i class="fas fa-graduation-cap"></i> {{ data.education.degree }}</h3>
                 <div class="company">{{ data.education.university }}</div>
                 <div class="duration">{{ data.education.duration }}</div>
             </div> -->
-            <!-- <div class="experience">
+  <!-- <div class="experience">
                 <h3><i class="fas fa-certificate"></i> AWS Certifications (2023)</h3>
                 <div style="margin-top: 10px;">
                     {% for cert in data.certifications %}
@@ -158,63 +187,71 @@
                     {% endfor %}
                 </div>
             </div> -->
-        <!-- </div>
+  <!-- </div>
     </div> -->
 
-<!-- Contact Form -->
-<div class="card" id="contact">
+  <!-- Contact Form -->
+  <div class="card card-section" id="contact">
     <h2 class="section-title">Get In Touch</h2>
     <div id="contact-form-container">
-        <!-- SINGLE form tag with Formspree action -->
-        <form action="https://formspree.io/f/mblzpllz" method="POST" class="contact-form">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="_replyto" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            
-            <!-- Formspree hidden fields (optional but recommended) -->
-            <input type="hidden" name="_subject" value="New Portfolio Contact!">
-            <input type="text" name="_gotcha" style="display:none">
-            
-            <button type="submit" class="btn-submit">
-                <i class="fas fa-paper-plane"></i> Send Message
-            </button>
-        </form>
-        <div id="form-message" class="form-message"></div>
-    </div>
-</div>
-    <!-- Call to Action -->
-    <div class="cta-section">
-        <h2 class="cta-title">Ready to Work Together?</h2>
-        <p class="cta-description">
-            I'm available for freelance projects, full-time opportunities, and consulting work in Python development, 
-            Machine Learning, and AI solutions. Let's build something amazing together!
-        </p>
-        <div class="cta-buttons">
-            <a href="mailto:{{ data.personal_info.email }}?subject=Project Inquiry" class="btn">
-                <i class="fas fa-envelope"></i> Email Me
-            </a>
-            <a href="{{ data.personal_info.linkedin }}" class="btn" target="_blank">
-                <i class="fab fa-linkedin"></i> Connect on LinkedIn
-            </a>
-            <a href="{{ data.personal_info.github }}" class="btn" target="_blank">
-                <i class="fab fa-github"></i> View GitHub
-            </a>
+      <!-- SINGLE form tag with Formspree action -->
+      <form
+        action="https://formspree.io/f/mblzpllz"
+        method="POST"
+        class="contact-form"
+      >
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="_replyto" required />
+          </div>
         </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+
+        <!-- Formspree hidden fields (optional but recommended) -->
+        <input type="hidden" name="_subject" value="New Portfolio Contact!" />
+        <input type="text" name="_gotcha" style="display: none" />
+
+        <button type="submit" class="btn-submit">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+      </form>
+      <div id="form-message" class="form-message"></div>
     </div>
+  </div>
+  <!-- Call to Action -->
+  <div class="cta-section">
+    <h2 class="cta-title">Ready to Work Together?</h2>
+    <p class="cta-description">
+      I'm available for full-time opportunities, freelance projects, and
+      consulting work in AI/ML, Computer Vision, and MLOps. Let's build
+      intelligent systems that solve real-world problems.
+    </p>
+    <div class="cta-buttons">
+      <a
+        href="mailto:{{ data.personal_info.email }}?subject=Project Inquiry"
+        class="btn"
+      >
+        <i class="fas fa-envelope"></i> Email Me
+      </a>
+      <a href="{{ data.personal_info.linkedin }}" class="btn" target="_blank">
+        <i class="fab fa-linkedin"></i> Connect on LinkedIn
+      </a>
+      <a href="{{ data.personal_info.github }}" class="btn" target="_blank">
+        <i class="fab fa-github"></i> View GitHub
+      </a>
+    </div>
+  </div>
 </div>
 {% endblock %}
