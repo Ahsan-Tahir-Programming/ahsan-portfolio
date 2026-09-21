@@ -66,47 +66,50 @@
 
 // API functions for potential use
 async function getPortfolioData() {
-    try {
-        const response = await fetch('/api/portfolio');
-        return await response.json();
-    } catch (error) {
-        console.error('Error fetching portfolio data:', error);
-        return null;
-    }
+  try {
+    const response = await fetch("/api/portfolio");
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching portfolio data:", error);
+    return null;
+  }
 }
 
 async function getSkills() {
-    try {
-        const response = await fetch('/api/skills');
-        return await response.json();
-    } catch (error) {
-        console.error('Error fetching skills:', error);
-        return null;
-    }
+  try {
+    const response = await fetch("/api/skills");
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching skills:", error);
+    return null;
+  }
 }
 // Mobile Menu Toggle Functions
 function toggleMobileMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    hamburger.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
+  const hamburger = document.querySelector(".hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  hamburger.classList.toggle("active");
+  mobileMenu.classList.toggle("active");
 }
 
 function closeMobileMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    hamburger.classList.remove('active');
-    mobileMenu.classList.remove('active');
+  const hamburger = document.querySelector(".hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  hamburger.classList.remove("active");
+  mobileMenu.classList.remove("active");
 }
 
 // Close menu when clicking outside
-document.addEventListener('click', function(event) {
-    const mobileNav = document.querySelector('.mobile-nav');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    if (!mobileNav.contains(event.target) && mobileMenu.classList.contains('active')) {
-        closeMobileMenu();
-    }
+document.addEventListener("click", function (event) {
+  const mobileNav = document.querySelector(".mobile-nav");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  if (
+    !mobileNav.contains(event.target) &&
+    mobileMenu.classList.contains("active")
+  ) {
+    closeMobileMenu();
+  }
 });

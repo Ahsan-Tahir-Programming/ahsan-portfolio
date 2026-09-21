@@ -25,7 +25,7 @@ except OSError:
 portfolio_data = {
     'personal_info': {
         'name': 'Ahsan Tahir',
-        'title': 'Python Developer | ML/AI Engineer',
+        'title': 'AI/ML Engineer',
         'email': 'ashantahirit@gmail.com',
         'phone': '+92 316 487 0898',
         'linkedin': 'https://linkedin.com/in/ahsan-tahir-880b5324a',
@@ -34,20 +34,23 @@ portfolio_data = {
         'about': 'AI Engineer specializing in Computer Vision and MLOps. Proven track record of deploying YOLO models to production using FastAPI and Docker. Experienced in building complex compliance logic for the Retail Tech industry. Passionate about building intelligent automation systems that solve real-world problems.'
     },
     'skills': {
-        'Languages': ['Python', 'Java', 'JavaScript', 'C++'],
-        'ML & Computer Vision': ['PyTorch', 'YOLO', 'TensorFlow Lite', 'OpenCV', 'NLP', 'Scikit-learn', 'Pandas', 'Geopy'],
-        'Frontend': ['HTML5', 'CSS3', 'Gradio'],
+        'AI': ['RAG', 'LangChain', 'LangGraph', 'OpenCV','NLP'],
+        'Framework & Libraries': ['Pandas', 'PyTorch', 'TensorFlow Lite', 'Scikit-learn', 'Gradio'],
+        'Cloud & DevOps': ['VPS', 'Docker', 'Git', 'Hugging Face', 'AWS', 'CI/CD Pipelines'],
+        'Databases': ['ChromaDB', 'MySQL', 'SQLite', 'Firebase'],
         'Backend & Web': ['FastAPI', 'Flask'],
-        'Databases': ['MySQL', 'SQLite', 'Firebase'],
-        'Cloud & DevOps': ['AWS', 'Docker', 'Git', 'Wasabi', 'S3-compatible Storage'],
-        'Desktop': ['PyQt']
+        'Languages': ['Python','SQL', 'Java', 'JavaScript', 'C++'],
+        'Frontend': ['HTML5', 'CSS3', 'Angular', 'React'],
+        'Desktop': ['PyQt', 'Tkinter'],
+        # 'Other Tools': ['Numba JIT', 'Geometric Algorithms', 'CI/CD Pipelines', 'Excel Import/Export', 'REST API Development']
+        
     },
     'experience': [
         {
-            'title': 'Python/AI Engineer',
+            'title': 'Python Developer',
             'company': 'Concave Tech',
             'duration': 'May 2024 – Present',
-            'description': 'Leading development of AI-powered solutions for Retail Tech. Key achievements: engineered a computer vision pipeline using YOLO & Geometric Algorithms for shelf compliance automation; built and deployed production-grade FastAPI backend for real-time object detection with Docker containerization; developed a full-stack AI-powered clustering and route optimization system with constrained K-means, MySQL, and Numba JIT. Streamlined large-scale dataset management using AWS CLI with S3-compatible storage (Wasabi).',
+            'description': 'Development of AI-powered solutions for Retail Tech. Key achievements: engineered a computer vision pipeline using YOLO & Geometric Algorithms for shelf compliance automation; built and deployed production-grade FastAPI backend for real-time object detection with Docker containerization; developed a full-stack AI-powered clustering and route optimization system with constrained K-means, MySQL, and Numba JIT. Streamlined large-scale dataset management using AWS CLI with S3-compatible storage (Wasabi).',
             'technologies': ['Python', 'YOLO', 'FastAPI', 'Docker', 'Computer Vision', 'MLOps', 'MySQL', 'AWS', 'Gradio', 'Geopy'],
         },
     ],
@@ -57,7 +60,7 @@ portfolio_data = {
             # previous 
             # 'description': 'Built a YOLO-based object detection web application with real-time detection capabilities. Features JSON API responses and is fully deployed and live for production use.',
             'description': 'Built a YOLO-based object detection web application deployed using Docker containerization. Implemented CI/CD pipeline with Docker image builds, push to registry, and automated deployment. Features FastAPI endpoints with real-time detection and JSON responses, currently running in production.',
-            'technologies': ['YOLO', 'FastAPI', 'SQLite', 'Docker'],
+            'technologies': ['YOLO', 'Pytorch', 'FastAPI', 'SQLite', 'Docker'],
             # 'icon': 'fas fa-search', Generic search icon
             # 'icon': 'fas fa-video',  # Video/camera better for object detection
             'icon': 'fas fa-camera',
@@ -85,7 +88,7 @@ portfolio_data = {
         {
             'title': 'Retail Planogram Compliance System',
             'description': 'Engineered a computer vision pipeline using YOLO & Geometric Algorithms to automate shelf compliance checks (Horizontal/Vertical matching). Improved complex logic for Brand Blocking detection and Eye-Level (Golden Zone) analysis, directly impacting retail audit efficiency. Architected an interactive audit dashboard using Gradio for visualizing gaps and misplacements.',
-            'technologies': ['YOLO', 'Gradio', 'Computer Vision', 'OpenCV'],
+            'technologies': ['YOLO', 'PyTorch', 'Gradio'],
             'icon': 'fas fa-store',
             'status': 'Completed'
         },
@@ -94,7 +97,14 @@ portfolio_data = {
             'description': 'Full-stack web application that intelligently clusters geographic locations and optimizes daily shop visit schedules. Uses constrained K-means clustering to group shops by location (respecting visit limits and distance constraints), distributes visits across days with workload balancing, and optimizes travel routes using heap-based path finding. Includes user authentication with MySQL, Excel import/export for bulk data, interactive dashboard with real-time visualization, REST API with CORS, and Numba JIT for performance-optimized processing.',
             'technologies': ['K-means Clustering', 'MySQL', 'Numba JIT', 'Geopy'],
             'icon': 'fas fa-route',
-            'status': 'Completed'
+            'status': 'Live'
+        },
+        {
+            'title': 'ShelfVision AI — Retail Compliance Analyzer',
+            'description': 'Built a production AI system in which Gemini Vision API analyzes shelf images for planogram compliance with structured JSON output. Implemented a RAG pipeline using a ChromaDB vector database to store and retrieve audit history. This enabled trend analysis across multiple store audits. Orchestrated a LangGraph React agent with 4 custom analytical tools for autonomous compliance trend calculation and report generation. Developed a FastAPI backend with 5 REST endpoints and a React + Vite + Tailwind CSS frontend. This was deployed on Hugging Face Spaces.',            
+            'technologies': ['RAG', 'LangChain', 'LangGraph', 'ChromaDB', 'FastAPI', 'React', 'Tailwind CSS', 'Hugging Face'],
+            'icon': 'fas fa-robot',
+            'status': 'Live'
         }
     ],
     'education': {
@@ -177,10 +187,10 @@ def contact():
 
 @app.route('/resume')
 def resume():
-    resume_path = os.path.join(app.static_folder, 'uploads', 'resume.pdf')
+    resume_path = os.path.join(app.static_folder, 'uploads', 'Ahsan_Tahir_Resume_AI Engineer.pdf')
     if not os.path.exists(resume_path):
-        resume_path = os.path.join(app.static_folder, 'resume.pdf')
-    return send_file(resume_path, as_attachment=False, download_name='Ahsan_Tahir_Resume.pdf')
+        resume_path = os.path.join(app.static_folder, 'Ahsan_Tahir_Resume_AI Engineer.pdf')
+    return send_file(resume_path, as_attachment=False, download_name='Ahsan_Tahir_Resume_AI Engineer.pdf')
 
 @app.route('/api/portfolio')
 def api_portfolio():
