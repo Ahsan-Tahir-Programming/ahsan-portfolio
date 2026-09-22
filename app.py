@@ -187,10 +187,23 @@ def contact():
 
 @app.route('/resume')
 def resume():
-    resume_path = os.path.join(app.static_folder, 'uploads', 'Ahsan_Tahir_Resume_AI Engineer.pdf')
-    if not os.path.exists(resume_path):
-        resume_path = os.path.join(app.static_folder, 'Ahsan_Tahir_Resume_AI Engineer.pdf')
-    return send_file(resume_path, as_attachment=False, download_name='Ahsan_Tahir_Resume_AI Engineer.pdf')
+    candidate_paths = [
+        os.path.join(app.static_folder, 'resume.pdf'),
+        os.path.join(app.static_folder, 'Ahsan_Tahir_Resume_AI_Engineer.pdf'),
+        os.path.join(app.static_folder, 'uploads', 'resume.pdf'),
+        os.path.join(app.static_folder, 'uploads', 'Ahsan_Tahir_Resume_AI_Engineer.pdf'),
+    ]
+
+    resume_path = next((path for path in candidate_paths if os.path.exists(path)), None)
+    if not resume_path:
+        return jsonify({'error': 'Resume file not found'}), 404
+
+    return send_file(
+        resume_path,
+        mimetype='application/pdf',
+        as_attachment=True,
+        download_name='Ahsan_Tahir_Resume_AI_Engineer.pdf'
+    )
 
 @app.route('/api/portfolio')
 def api_portfolio():
